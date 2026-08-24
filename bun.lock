@@ -3,7 +3,7 @@
   "configVersion": 1,
   "workspaces": {
     "": {
-      "name": "youtube-music-cli",
+      "name": "@builderstar/youtube-music-cli-mcp-fork",
       "dependencies": {
         "@bun-win32/kernel32": "^2.0.1",
         "@bun-win32/user32": "^4.0.1",

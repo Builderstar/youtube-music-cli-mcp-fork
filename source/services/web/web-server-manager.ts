@@ -85,7 +85,13 @@ class WebServerManager {
 			}
 		}
 
-		logger.info('WebServerManager', 'Starting web server', finalConfig);
+		logger.info('WebServerManager', 'Starting web server', {
+			...finalConfig,
+			auth: {
+				...finalConfig.auth,
+				token: finalConfig.auth.token ? '[redacted]' : undefined,
+			},
+		});
 
 		try {
 			const wsServer = getWebSocketServer();

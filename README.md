@@ -1,3 +1,13 @@
+> [!IMPORTANT]
+> This is an unofficial fork of
+> [involvex/youtube-music-cli](https://github.com/involvex/youtube-music-cli)
+> that adds a local stdio MCP server. It is not affiliated with upstream,
+> YouTube, or Google. The custom fork is built from source and is not the npm
+> package advertised by upstream.
+
+See [mcp/README.md](mcp/README.md) for MCP installation, tools, permissions,
+and client configuration.
+
 <div align="center">
 
 # 🎵 youtube-music-cli
@@ -8,7 +18,6 @@ A powerful Terminal User Interface (TUI) music player for YouTube Music
   <img src="assets/player-preview.gif" alt="youtube-music-cli terminal preview" width="800">
 </p>
 
-[![npm version](https://img.shields.io/npm/v/@involvex/youtube-music-cli.svg)](https://www.npmjs.com/package/@involvex/youtube-music-cli)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 [Features](#features) • [Installation](#installation) • [Usage](#usage) • [Plugins](#plugins) • [Documentation](https://involvex.github.io/youtube-music-cli)
@@ -34,9 +43,10 @@ A powerful Terminal User Interface (TUI) music player for YouTube Music
 - 🏷️ **Metadata Tagging** - Auto-tag title/artist/album with optional cover art
 - ⚡️ **Shell Completions** - `ymc completions <bash|zsh|powershell|fish>` emits scripts you can source or save so the CLI (also available as `ymc`) tab-completes subcommands and flags
 
-## Support the Project
+## Support the Upstream Project
 
-If you find youtube-music-cli useful, consider supporting its development:
+If you find youtube-music-cli useful, consider supporting the upstream
+project's development:
 
 - ☕ [Buy Me a Coffee](https://buymeacoffee.com/involvex)
 - 🪙 [PayPal](https://paypal.me/involvex)

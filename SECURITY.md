@@ -1,5 +1,9 @@
 # Security Policy
 
+This file applies to the Builderstar fork snapshot. For upstream-only issues,
+use the reporting process in
+[involvex/youtube-music-cli](https://github.com/involvex/youtube-music-cli).
+
 ## Supported Versions
 
 | Version | Supported          |
@@ -13,19 +17,15 @@ We take security vulnerabilities seriously. If you discover a security issue, pl
 ### How to Report
 
 1. **Do NOT** create a public GitHub issue for security vulnerabilities
-2. Email the maintainers directly or use [GitHub's private vulnerability reporting](https://github.com/involvex/youtube-music-cli/security/advisories/new)
+2. Use [this repository's private vulnerability reporting](https://github.com/Builderstar/youtube-music-cli-mcp-fork/security/advisories/new)
 3. Include as much detail as possible:
    - Description of the vulnerability
    - Steps to reproduce
    - Potential impact
    - Suggested fix (if any)
 
-### What to Expect
-
-- **Acknowledgment**: We will acknowledge receipt within 48 hours
-- **Assessment**: We will assess the vulnerability and determine its severity
-- **Fix Timeline**: Critical issues will be addressed within 7 days; moderate issues within 30 days
-- **Disclosure**: We will coordinate disclosure timing with you
+Reports will be reviewed on a best-effort basis. This snapshot does not promise
+an upstream maintenance or response schedule.
 
 ## Security Measures
 
@@ -56,18 +56,19 @@ This project relies on several third-party packages. Some transitive dependencie
 
 - The CLI executes external commands for audio playback (`play-sound`)
 - Audio URLs are validated and sanitized before execution
-- No user credentials are stored locally
+- Configuration and optional service credentials are stored locally under
+  `~/.youtube-music-cli`; protect that directory and do not attach it to issues
 - No network requests are made to third-party services (only YouTube)
 
 ## Security Best Practices for Users
 
 1. **Keep updated**: Always use the latest version of this CLI
-2. **Verify sources**: Only install from npm or the official GitHub repository
+2. **Verify sources**: Build this fork from this GitHub repository; the custom
+   MCP server is not provided by the upstream npm package
 3. **Review permissions**: This CLI requires network access and audio playback permissions
 
 ## Contact
 
 For security concerns, contact the maintainers through:
 
-- GitHub Security Advisories: https://github.com/involvex/youtube-music-cli/security
-- Sponsor/Support: https://github.com/sponsors/involvex
+- GitHub Security Advisories: https://github.com/Builderstar/youtube-music-cli-mcp-fork/security

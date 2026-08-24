@@ -11,3 +11,11 @@ source/services/config/config.service.ts
 *.log
 .claude/settings.local.json
 .mira
+.agents
+.claude
+.cursor
+.kilo
+.kilocode
+.opencode/plans
+plan
+skills-lock.json

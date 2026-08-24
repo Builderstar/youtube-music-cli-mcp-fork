@@ -19,14 +19,13 @@ type ConfigShape = {playlists?: Playlist[]} & Record<string, unknown>;
 
 function readConfig(): ConfigShape {
 	if (!existsSync(CONFIG_FILE)) return {playlists: []};
-	try {
-		const raw = readFileSync(CONFIG_FILE, 'utf-8');
-		const parsed = JSON.parse(raw) as ConfigShape;
-		if (!Array.isArray(parsed.playlists)) parsed.playlists = [];
-		return parsed;
-	} catch {
-		return {playlists: []};
+	const parsed = JSON.parse(readFileSync(CONFIG_FILE, 'utf-8')) as unknown;
+	if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) {
+		throw new Error(`Invalid configuration object in ${CONFIG_FILE}`);
 	}
+	const config = parsed as ConfigShape;
+	if (!Array.isArray(config.playlists)) config.playlists = [];
+	return config;
 }
 
 function writeConfig(config: ConfigShape): void {

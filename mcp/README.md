@@ -8,12 +8,15 @@ services, so it reads and writes the same config as the TUI
 
 ## Install
 
-The server ships with the package. After a global install it is available as the
-`youtube-music-cli-mcp` binary:
+This MCP server is specific to this fork and is not included in the upstream
+npm package. Build it from a clone:
 
 ```bash
-npm install -g @involvex/youtube-music-cli
-youtube-music-cli-mcp   # runs the stdio server (waits for a client)
+git clone https://github.com/Builderstar/youtube-music-cli-mcp-fork.git
+cd youtube-music-cli-mcp-fork
+bun install --frozen-lockfile
+bun run build:mcp
+node dist/mcp/server.js
 ```
 
 To run from source during development:
@@ -30,23 +33,9 @@ Any MCP client that supports stdio servers can use this config:
 {
 	"mcpServers": {
 		"youtube-music-cli": {
-			"command": "youtube-music-cli-mcp"
-		}
-	}
-}
-```
-
-If the binary is not on `PATH`, use the absolute path to the built server, e.g.
-`/usr/lib/node_modules/@involvex/youtube-music-cli/dist/mcp/server.js` run with
-`node`:
-
-```json
-{
-	"mcpServers": {
-		"youtube-music-cli": {
 			"command": "node",
 			"args": [
-				"/usr/lib/node_modules/@involvex/youtube-music-cli/dist/mcp/server.js"
+				"/absolute/path/to/youtube-music-cli-mcp-fork/dist/mcp/server.js"
 			]
 		}
 	}
@@ -78,11 +67,18 @@ If the binary is not on `PATH`, use the absolute path to the built server, e.g.
 
 ## Notes
 
+- Only connect trusted MCP clients. The server can search the network, read
+  local playlists and configured music directories, return local paths,
+  import caller-selected M3U files, write exports and downloads, and mutate or
+  delete playlists.
+- Back up `~/.youtube-music-cli/config.json` before using mutation tools. Each
+  mutation re-reads the latest config and writes through a temporary file, but
+  this is not a cross-process transaction with the TUI.
+
 - **Downloads** require the _Download_ feature enabled in the app settings and
   `ffmpeg` + `yt-dlp` installed.
 - **Local music** requires a `Local Music Folder` set in settings (the downloads
   folder is included by default).
-- Playlist mutations are concurrency-safe: the server re-reads `config.json`
-  from disk before each write, so it will not clobber edits you make in the TUI
-  at the same time.
+- Playlist mutations preserve unrelated config fields and fail rather than
+  replacing a malformed or unreadable config file.
 - All responses are returned as JSON text content.
