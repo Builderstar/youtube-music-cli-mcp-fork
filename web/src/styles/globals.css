@@ -1,0 +1,70 @@
+:root {
+	--color-bg: #0f0f0f;
+	--color-bg-secondary: #1a1a1a;
+	--color-text: #e0e0e0;
+	--color-text-dim: #888888;
+	--color-primary: #3b82f6;
+	--color-secondary: #8b5cf6;
+	--color-accent: #ec4899;
+	--color-success: #10b981;
+	--color-error: #ef4444;
+	--color-border: #333333;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family:
+		-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+		Cantarell, sans-serif;
+	background-color: var(--color-bg);
+	color: var(--color-text);
+	min-height: 100vh;
+	line-height: 1.5;
+}
+
+#root {
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+
+button {
+	cursor: pointer;
+	border: none;
+	background: none;
+	font-family: inherit;
+}
+
+input {
+	font-family: inherit;
+}
+
+/* Light theme */
+body.light-theme {
+	--color-bg: #ffffff;
+	--color-bg-secondary: #f5f5f5;
+	--color-text: #1a1a1a;
+	--color-text-dim: #666666;
+	--color-border: #e0e0e0;
+}
+
+/* Track change animation */
+@keyframes trackFadeIn {
+	from {
+		opacity: 0;
+		transform: translateY(6px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.track-fade-in {
+	animation: trackFadeIn 0.35s ease forwards;
+}

@@ -1,0 +1,22 @@
+title: youtube-music-cli
+description: A powerful Terminal User Interface (TUI) music player for YouTube Music
+baseurl: /youtube-music-cli
+url: https://involvex.github.io
+
+# Use minimal theme as base
+remote_theme: pages-themes/minimal@v0.2.0
+plugins:
+  - jekyll-remote-theme
+
+# Markdown settings
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+# Exclude from build
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor

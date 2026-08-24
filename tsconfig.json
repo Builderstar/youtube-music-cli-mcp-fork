@@ -1,0 +1,20 @@
+{
+	"extends": ["@sindresorhus/tsconfig", "@tsconfig/bun"],
+	"compilerOptions": {
+		"outDir": "dist",
+		"module": "esnext",
+		"moduleResolution": "bundler",
+		"allowImportingTsExtensions": true,
+		"emitDeclarationOnly": true,
+		"jsx": "react-jsx",
+		"types": ["bun-types", "node"]
+	},
+	"include": [
+		"source",
+		"mcp",
+		"test.tsx",
+		"eslint.config.ts",
+		"scripts/build-cli.ts",
+		"plugins"
+	]
+}

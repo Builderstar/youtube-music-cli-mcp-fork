@@ -1,0 +1,13 @@
+node_modules
+dist
+nul
+.mira/mira.log
+.env
+.env.local
+.mcp
+firebase-debug.log
+source/services/config/config.service.ts
+.kilo/plans
+*.log
+.claude/settings.local.json
+.mira

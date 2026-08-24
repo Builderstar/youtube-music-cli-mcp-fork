@@ -1,0 +1,63 @@
+// Sleep timer service - auto-stops playback after a set duration
+import {logger} from '../logger/logger.service.ts';
+
+export const SLEEP_TIMER_PRESETS = [5, 10, 15, 30, 60] as const;
+export type SleepTimerPreset = (typeof SLEEP_TIMER_PRESETS)[number];
+
+class SleepTimerService {
+	private static instance: SleepTimerService;
+	private timer: NodeJS.Timeout | null = null;
+	private endTime: number | null = null;
+
+	private constructor() {}
+
+	static getInstance(): SleepTimerService {
+		if (!SleepTimerService.instance) {
+			SleepTimerService.instance = new SleepTimerService();
+		}
+		return SleepTimerService.instance;
+	}
+
+	start(minutes: number, onExpire: () => void): void {
+		this.cancel();
+		this.endTime = Date.now() + minutes * 60 * 1000;
+
+		logger.info('SleepTimerService', 'Timer started', {minutes});
+
+		this.timer = setTimeout(
+			() => {
+				logger.info('SleepTimerService', 'Timer expired');
+				this.endTime = null;
+				this.timer = null;
+				onExpire();
+			},
+			minutes * 60 * 1000,
+		);
+	}
+
+	cancel(): void {
+		if (this.timer) {
+			clearTimeout(this.timer);
+			this.timer = null;
+			this.endTime = null;
+			logger.info('SleepTimerService', 'Timer cancelled');
+		}
+	}
+
+	/** Returns remaining seconds, or null if no timer active */
+	getRemainingSeconds(): number | null {
+		if (!this.endTime) return null;
+		const remaining = Math.max(
+			0,
+			Math.ceil((this.endTime - Date.now()) / 1000),
+		);
+		return remaining;
+	}
+
+	isActive(): boolean {
+		return this.timer !== null;
+	}
+}
+
+export const getSleepTimerService = (): SleepTimerService =>
+	SleepTimerService.getInstance();
